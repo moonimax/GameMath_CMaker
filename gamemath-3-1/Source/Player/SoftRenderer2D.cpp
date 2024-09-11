@@ -55,7 +55,8 @@ void SoftRenderer::LoadScene2D()
 // 게임 로직과 렌더링 로직이 공유하는 변수
 // 변수 선언 영역
 Vector2 currentPosition(100.f, 100.f);
-
+float currentScale = 10.f;
+float currentDegree = 0.1f;
 
 // 게임 로직을 담당하는 함수
 void SoftRenderer::Update2D(float InDeltaSeconds)
@@ -66,15 +67,24 @@ void SoftRenderer::Update2D(float InDeltaSeconds)
 
 	// 게임 로직의 로컬 변수
 	static float moveSpeed = 100.f;
+	static float scaleMin = 5.f;	// 최소 크기 값을 지정하는 변수
+	static float scaleMax = 20.f;	// 최대 크기 값을 지정하는 변수
+	static float scaleSpeed = 20.f;	// 입력에 따른 크기 변화 속도를 지정하는 변수
+	static float rotateSpeed = 180.f;
+
 
 	// X축과 Y축 입력을 결합해 입력 벡터를 생성한다.
 	// X, Y축을 동시에 입력받게 되면 벡터 크기 값이 급성장함으로 정규화시킨다. GetNormalize()
 	Vector2 inputVector = Vector2(input.GetAxis(InputAxis::XAxis), input.GetAxis(InputAxis::YAxis)).GetNormalize();
-
 	Vector2 deltaPosition = inputVector * moveSpeed * InDeltaSeconds;
+	float deltaScale = input.GetAxis(InputAxis::ZAxis) * scaleSpeed * InDeltaSeconds;	// Z축 입력에 따른 크기의 변화량을 계산한다.
+	float deltaDegree = input.GetAxis(InputAxis::WAxis) * rotateSpeed * InDeltaSeconds;
+
 
 	//물체의 최종 상태 설정
 	currentPosition += deltaPosition;
+	currentDegree += deltaDegree;
+
 }
 
 // 렌더링 로직을 담당하는 함수
@@ -88,34 +98,48 @@ void SoftRenderer::Render2D()
 	DrawGizmo2D();
 
 	// 렌더링 로직의 로컬 변수
-	static float radius = 50.f;
-	static std::vector<Vector2> circles;
-
-	if (circles.empty())
+	float rad = 0.f;
+	static float increment = 0.001f;
+	static std::vector<Vector2> hearts;
+	HSVColor hsv(0.f, 1.f, 0.85f);
+	// 하트 구성하는 점 생성
+	if(hearts.empty())
 	{
-		for (float x = -radius; x <= radius; x++)
-		{
-			for (float y = -radius; y <= radius; y++)
-			{
-				Vector2 pointToTest = Vector2(x, y);	// x, y를 결합해 벡터를 선언한다.
-				float squaredLength = pointToTest.SizeSquared();	// 벡터의 크기를 구한다.
-				if (squaredLength <= radius * radius)
-				{
-					circles.push_back(Vector2(x, y));
-				}
-
-
-			}
-		}
-	}
 	
-	// 원을 구성하는 벡터를 모두 붉은색으로 표시
-	for (auto const& v : circles)
-	{
-		r.DrawPoint(v + currentPosition, LinearColor::Red);
+		for (rad = 0.f; rad < Math::TwoPI; rad += increment)
+		{
+			float sin = sinf(rad);
+			float cos = cosf(rad);
+			float cos2 = cosf(2 * rad);
+			float cos3 = cosf(3 * rad);
+			float cos4 = cosf(4 * rad);
+			float x = 16.f * sin * sin * sin;
+			float y = 10 * cos - 5 * cos2 - 2 * cos3 - cos4;
+			hearts.push_back(Vector2(x, y));
+
+		}
+
 	}
 
-	r.PushStatisticText("Coordinate : " + currentPosition.ToString());
+	float sin = 0.f; float cos = 0.f;
+	// currentDegree sin, cos 얻어낸다. 
+	Math::GetSinCos(sin, cos, currentDegree);
+	// 각 값을 초기화 후 색상을 증가시키면서 점에 대응
+	rad = 0.f;
+
+	for (auto const& v : hearts)
+	{
+		// 소프트 웨어가 제공하는 HSV 모델의 H는 라디안 값이 아닌 [0.1] 범위 값을 사용한다. 따라서 원의 라디언 값에 해당하는 범위로 변경한다.
+		// 1. 점에 크기를 적용한다
+		Vector2 scaledV = v * currentScale;
+		// 2. 크기가 변한 점을 회전시킴
+		Vector2 rotatedV = Vector2(scaledV.X * cos - scaledV.Y * sin, scaledV.X * sin + scaledV.Y * cos);
+		// 3. 회전 시킨 점 이동
+		Vector2 transltedV = rotatedV + currentPosition;
+		hsv.H / rad / Math::TwoPI;
+		r.DrawPoint(transltedV, hsv.ToLinearColor());
+
+	}
 
 }
 
