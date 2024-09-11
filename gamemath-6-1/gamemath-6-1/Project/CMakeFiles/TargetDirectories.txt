@@ -1,0 +1,9 @@
+C:/Users/mhj29/Desktop/gamemath-6-1/gamemath-6-1/Project/CMakeFiles/ALL_BUILD.dir
+C:/Users/mhj29/Desktop/gamemath-6-1/gamemath-6-1/Project/Source/Runtime/Math/CMakeFiles/MathModule.dir
+C:/Users/mhj29/Desktop/gamemath-6-1/gamemath-6-1/Project/Source/Runtime/Math/CMakeFiles/ALL_BUILD.dir
+C:/Users/mhj29/Desktop/gamemath-6-1/gamemath-6-1/Project/Source/Runtime/Renderer/CMakeFiles/RendererModule.dir
+C:/Users/mhj29/Desktop/gamemath-6-1/gamemath-6-1/Project/Source/Runtime/Renderer/CMakeFiles/ALL_BUILD.dir
+C:/Users/mhj29/Desktop/gamemath-6-1/gamemath-6-1/Project/Source/Runtime/Engine/CMakeFiles/EngineModule.dir
+C:/Users/mhj29/Desktop/gamemath-6-1/gamemath-6-1/Project/Source/Runtime/Engine/CMakeFiles/ALL_BUILD.dir
+C:/Users/mhj29/Desktop/gamemath-6-1/gamemath-6-1/Project/Source/Player/CMakeFiles/SoftRendererPlayer.dir
+C:/Users/mhj29/Desktop/gamemath-6-1/gamemath-6-1/Project/Source/Player/CMakeFiles/ALL_BUILD.dir

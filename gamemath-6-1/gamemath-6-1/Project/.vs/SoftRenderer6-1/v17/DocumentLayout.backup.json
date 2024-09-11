@@ -1,0 +1,36 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\mhj29\\Desktop\\gamemath-6-1\\gamemath-6-1\\Project\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{CAA73B69-9FB9-3841-B106-4336ED6C1264}|Source\\Player\\SoftRendererPlayer.vcxproj|C:\\Users\\mhj29\\Desktop\\gamemath-6-1\\gamemath-6-1\\Source\\Player\\SoftRenderer2D.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SoftRenderer2D.cpp",
+              "DocumentMoniker": "C:\\Users\\mhj29\\Desktop\\gamemath-6-1\\gamemath-6-1\\Source\\Player\\SoftRenderer2D.cpp",
+              "RelativeDocumentMoniker": "..\\Source\\Player\\SoftRenderer2D.cpp",
+              "ToolTip": "C:\\Users\\mhj29\\Desktop\\gamemath-6-1\\gamemath-6-1\\Source\\Player\\SoftRenderer2D.cpp",
+              "RelativeToolTip": "..\\Source\\Player\\SoftRenderer2D.cpp",
+              "ViewState": "AgIAAHMAAAAAAAAAAAAYwIgAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2024-09-11T11:10:57.227Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
